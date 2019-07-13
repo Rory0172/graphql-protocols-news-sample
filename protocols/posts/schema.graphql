@@ -1,0 +1,13 @@
+# View posts like medium
+# Github: emilebosch/posts
+
+type Post {
+  title: String!
+  markdownContent: String!
+  link: String
+  tags: [String!]!
+}
+
+interface Posts {
+  posts: [Post!]
+}
