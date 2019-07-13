@@ -1,12 +1,5 @@
-type User implements Postbox {
+type Query {
 }
 
-type Query implements Postbox, Posts {
-  messages: [Message!]
-  posts: [Post!]
-  viewer: User
-}
-
-type Mutation implements PostboxMutatations {
-  sendMessage(message: String): Message
+type Mutation  {
 }

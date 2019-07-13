@@ -1,13 +1,23 @@
 require "sinatra/base"
 require "graphql"
 
+class String
+  def underscore
+    self.gsub(/::/, '/').
+    gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+    gsub(/([a-z\d])([A-Z])/,'\1_\2').
+    tr("-", "_").
+    downcase
+  end
+end
+
 module Messages
   def messages
     [{message: "You are all breathtaking!"}]
   end
 
   module Mutations
-    def sendMessage
+    def send_message(message:)
       {message: "No! YOU are breathtaking!"}
     end
   end
@@ -32,9 +42,22 @@ module Posts
   end
 end
 
+module Newslettersubscription
+  def subscribed
+    {subscribed: true}
+  end
+  
+  module Mutations
+    def subscribe_newsletter(email:)
+      true
+    end
+  end
+end
+
 class Query
   include Messages
   include Posts
+  include Newslettersubscription
   def viewer
     nil
   end
@@ -42,23 +65,23 @@ end
 
 class Mutation
   include Messages::Mutations
+  include Newslettersubscription::Mutations
 end
 
 module TestAPI
   module Resolver
-    def self.call(type, field, obj, args, ctx)
-      s = field.name.to_sym
-      case type.to_s
+    def self.call(type = nil, field, obj, args, ctx)
+      field_name = field.name.to_sym
+      case ctx.parent_type.to_s
       when 'Mutation'
-        x = Mutation.new
-        x.public_send(s)
-
+        mutation = Mutation.new
+        mutation.public_send(field_name.to_s.underscore.to_sym, **args.to_kwargs)
       when 'Query'
-        x = Query.new
-        x.public_send(s)
+        query = Query.new
+        query.public_send(field_name)
       else
-        return obj[s] if obj.is_a? Hash
-        obj.public_send(s)
+        return obj[field_name] if obj.is_a? Hash
+        obj.public_send(field_name)
       end
     end
   end

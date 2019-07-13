@@ -8,6 +8,6 @@ type Post {
   tags: [String!]!
 }
 
-interface Posts {
+extend type Query {
   posts: [Post!]
 }

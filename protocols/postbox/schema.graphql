@@ -7,11 +7,11 @@ type Message {
 }
 
 # Implementation of the postbox protocol on https://github.com/graphql-protocols/graphql-protocols/blob/master/draft/postbox.md
-interface Postbox {
+extend type Query {
   messages: [Message!]
 }
 
 # Implementation of the postbox protocol on https://github.com/graphql-protocols/graphql-protocols/blob/master/draft/postbox.md
-interface PostboxMutatations {
+extend type Mutation {
   sendMessage(message: String): Message
 }

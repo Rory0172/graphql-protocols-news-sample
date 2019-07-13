@@ -1,0 +1,11 @@
+# type Subscribed {
+#   subscribed: Boolean!
+# }
+
+# interface Newslettersubscription {
+#   subscribed: Subscribed
+# }
+
+extend type Mutation {
+	subscribeNewsletter(email: String!): Boolean!
+}
