@@ -8,6 +8,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    byebug (11.0.1)
     mustermann (1.0.3)
     rack (2.0.7)
     rack-contrib (2.1.0)
@@ -26,6 +27,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   graphql!
   rack-contrib
   rack-graphiql
