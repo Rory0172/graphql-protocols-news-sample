@@ -8,4 +8,5 @@
 
 extend type Mutation {
 	subscribeNewsletter(email: String!): Boolean!
+	unsubscribeNewsletter(email: String!): Boolean!
 }

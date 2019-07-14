@@ -51,6 +51,9 @@ module Newslettersubscription
     def subscribe_newsletter(email:)
       true
     end
+    def unsubscribe_newsletter(email:)
+      true
+    end
   end
 end
 
