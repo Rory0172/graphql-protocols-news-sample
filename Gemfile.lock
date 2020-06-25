@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/emilebosch/graphql-ruby.git
-  revision: 4f8f828894ccea0ddc8161ea55e1c6d81e37c1f2
+  remote: https://github.com/emilebosch/graphql-ruby.git
+  revision: c301f695a9a30974f59bfab1dbe3b0e8cac2aeaf
   branch: implement-schema-extend-keyword
   specs:
     graphql (1.9.7)
@@ -10,7 +10,7 @@ GEM
   specs:
     byebug (11.0.1)
     mustermann (1.0.3)
-    rack (2.0.7)
+    rack (2.2.3)
     rack-contrib (2.1.0)
       rack (~> 2.0)
     rack-graphiql (0.1.1)
